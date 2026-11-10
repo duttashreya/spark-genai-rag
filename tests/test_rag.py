@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
-from src.api.main import app
+
 from src.api.generator import RAGGenerator
+from src.api.main import app
 
 
 def test_prompt_builder():

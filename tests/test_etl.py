@@ -1,6 +1,6 @@
 from src.etl.chunker import chunk_text
-from src.etl.spark_session import get_spark_session
 from src.etl.ingest import process_raw_documents
+from src.etl.spark_session import get_spark_session
 
 
 def test_chunk_text_logic():

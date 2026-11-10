@@ -52,12 +52,14 @@ jobs:
           ruff check .
 
       - name: Initialize Database Schema
+        env:
+          DATABASE_URL: postgresql://rag_user:rag_password@127.0.0.1:5432/rag_db
         run: |
           python -m src.indexing.init_db
           python -m src.indexing.add_fts
 
       - name: Run Test Suite
         env:
-          DATABASE_URL: postgresql://rag_user:rag_password@localhost:5432/rag_db
+          DATABASE_URL: postgresql://rag_user:rag_password@127.0.0.1:5432/rag_db
         run: |
           pytest -v

@@ -1,5 +1,6 @@
 import psycopg
 from pgvector.psycopg import register_vector
+
 from src.indexing.config import settings
 from src.pipeline import run_pipeline
 

@@ -1,6 +1,7 @@
 import numpy as np
 import psycopg
 from pgvector.psycopg import register_vector
+
 from src.indexing.config import settings
 
 
