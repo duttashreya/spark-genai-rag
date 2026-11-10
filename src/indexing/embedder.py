@@ -1,10 +1,10 @@
-import os
-from typing import Iterator
-import numpy as np
+from collections.abc import Iterator
+
 import pandas as pd
 from pyspark.sql.functions import pandas_udf
 from pyspark.sql.types import ArrayType, FloatType
 from sentence_transformers import SentenceTransformer
+
 from src.indexing.config import settings
 
 

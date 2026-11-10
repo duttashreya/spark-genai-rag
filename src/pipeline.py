@@ -1,7 +1,8 @@
 import argparse
 import time
-from src.etl.spark_session import get_spark_session
+
 from src.etl.ingest import process_raw_documents
+from src.etl.spark_session import get_spark_session
 from src.indexing.embedder import compute_embeddings_udf
 from src.indexing.sink import save_chunks_to_vector_db
 

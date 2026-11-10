@@ -1,13 +1,20 @@
-from typing import List, Dict, Any
-from pyspark.sql.functions import udf, explode, col
-from pyspark.sql.types import ArrayType, StructType, StructField, StringType, IntegerType
+from typing import Any
+
+from pyspark.sql.functions import udf
+from pyspark.sql.types import (
+    ArrayType,
+    IntegerType,
+    StringType,
+    StructField,
+    StructType,
+)
 
 
 def chunk_text(
     text: str,
     chunk_size: int = 500,
     chunk_overlap: int = 50,
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """
     Splits text into chunks of roughly `chunk_size` characters with `chunk_overlap`.
     Returns a list of dicts with chunk_index and content.

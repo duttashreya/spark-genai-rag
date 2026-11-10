@@ -1,4 +1,4 @@
-from typing import Any, Dict, List
+from typing import Any
 
 
 class RAGGenerator:
@@ -11,7 +11,7 @@ class RAGGenerator:
     )
 
     @staticmethod
-    def build_prompt(query: str, contexts: List[Dict[str, Any]]) -> str:
+    def build_prompt(query: str, contexts: list[dict[str, Any]]) -> str:
         formatted_context = "\n\n".join(
             [
                 f"[Source {idx + 1}] (Document: {c['document_id']}, Chunk: {c['chunk_index']}):\n{c['content']}"
@@ -27,7 +27,7 @@ class RAGGenerator:
         )
         return prompt
 
-    def generate_answer(self, query: str, contexts: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def generate_answer(self, query: str, contexts: list[dict[str, Any]]) -> dict[str, Any]:
         """
         Generates answer and structured citations.
         Uses extractive synthesis when external LLM is not attached.

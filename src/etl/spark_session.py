@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+
 from src.indexing.config import settings
 
 

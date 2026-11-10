@@ -1,10 +1,12 @@
 import time
 from contextlib import asynccontextmanager
-from typing import Any, Dict, List
+from typing import Any
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from src.indexing.retriever import HybridRetriever
+
 from src.api.generator import RAGGenerator
+from src.indexing.retriever import HybridRetriever
 
 retriever = None
 generator = None
@@ -49,14 +51,14 @@ class QueryResponse(BaseModel):
     query: str
     latency_ms: float
     total_results: int
-    results: List[DocumentChunkResponse]
+    results: list[DocumentChunkResponse]
 
 
 class RAGResponse(BaseModel):
     query: str
     answer: str
     latency_ms: float
-    citations: List[Dict[str, Any]]
+    citations: list[dict[str, Any]]
 
 
 @app.post("/v1/search", response_model=QueryResponse)

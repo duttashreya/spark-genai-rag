@@ -1,7 +1,7 @@
-import io
 import psycopg
 from pgvector.psycopg import register_vector
 from pyspark.sql import DataFrame
+
 from src.indexing.config import settings
 
 

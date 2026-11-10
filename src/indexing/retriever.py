@@ -1,8 +1,10 @@
-from typing import Any, Dict, List
+from typing import Any
+
 import numpy as np
 import psycopg
 from pgvector.psycopg import register_vector
 from sentence_transformers import SentenceTransformer
+
 from src.indexing.config import settings
 
 
@@ -11,10 +13,10 @@ class HybridRetriever:
         # Query encoder running CPU inference
         self.encoder = SentenceTransformer(settings.embedding_model_name)
 
-    def retrieve(self, query: str, top_k: int = 5, rrf_k: int = 60) -> List[Dict[str, Any]]:
+    def retrieve(self, query: str, top_k: int = 5, rrf_k: int = 60) -> list[dict[str, Any]]:
         query_vector = self.encoder.encode(query, normalize_embeddings=True).astype(np.float32)
 
-        hybrid_query = f"""
+        hybrid_query = """
         WITH dense_search AS (
             SELECT 
                 id,

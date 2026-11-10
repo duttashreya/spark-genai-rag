@@ -1,8 +1,10 @@
 import os
+
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col, explode, input_file_name, regexp_extract
-from src.etl.spark_session import get_spark_session
+
 from src.etl.chunker import chunk_text_udf
+from src.etl.spark_session import get_spark_session
 
 
 def process_raw_documents(spark, input_dir: str) -> DataFrame:
