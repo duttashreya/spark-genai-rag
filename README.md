@@ -1,6 +1,6 @@
 # Scalable Document ETL & Hybrid RAG Engine
 
-[![CI Pipeline](https://github.com/shreya/spark-genai-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/shreya/spark-genai-rag/actions)
+[![CI Pipeline](https://github.com/duttashreya/spark-genai-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/duttashreya/spark-genai-rag/actions)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.5.0-orange.svg)](https://spark.apache.org/)
 [![PostgreSQL](https://img.shields.io/badge/pgvector-PostgreSQL%2016-336791.svg)](https://github.com/pgvector/pgvector)
