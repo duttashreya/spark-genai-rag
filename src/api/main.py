@@ -1,21 +1,23 @@
 import time
 from contextlib import asynccontextmanager
-from typing import List
+from typing import Any, Dict, List
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from src.indexing.retriever import HybridRetriever
+from src.api.generator import RAGGenerator
 
 retriever = None
+generator = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global retriever
-    # Startup: Load the encoder once into memory
+    global retriever, generator
     retriever = HybridRetriever()
+    generator = RAGGenerator()
     yield
-    # Shutdown logic (if needed)
     retriever = None
+    generator = None
 
 
 app = FastAPI(
@@ -50,6 +52,13 @@ class QueryResponse(BaseModel):
     results: List[DocumentChunkResponse]
 
 
+class RAGResponse(BaseModel):
+    query: str
+    answer: str
+    latency_ms: float
+    citations: List[Dict[str, Any]]
+
+
 @app.post("/v1/search", response_model=QueryResponse)
 async def search_endpoint(request: QueryRequest):
     if not retriever:
@@ -64,6 +73,24 @@ async def search_endpoint(request: QueryRequest):
         latency_ms=round(latency_ms, 2),
         total_results=len(records),
         results=records,
+    )
+
+
+@app.post("/v1/rag/ask", response_model=RAGResponse)
+async def ask_endpoint(request: QueryRequest):
+    if not retriever or not generator:
+        raise HTTPException(status_code=503, detail="RAG system not initialized.")
+
+    start_time = time.perf_counter()
+    contexts = retriever.retrieve(query=request.query, top_k=request.top_k)
+    gen_result = generator.generate_answer(query=request.query, contexts=contexts)
+    latency_ms = (time.perf_counter() - start_time) * 1000
+
+    return RAGResponse(
+        query=request.query,
+        answer=gen_result["answer"],
+        latency_ms=round(latency_ms, 2),
+        citations=gen_result["citations"],
     )
 
 
