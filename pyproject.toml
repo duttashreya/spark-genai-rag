@@ -1,0 +1,22 @@
+[project]
+name = "spark-genai-rag"
+version = "0.1.0"
+description = "Scalable Document ETL and Hybrid RAG Engine using PySpark, pgvector, and FastAPI"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "pyspark>=3.5.0",
+    "psycopg[binary]>=3.1.0",
+    "pgvector>=0.2.5",
+    "sentence-transformers>=2.7.0",
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "pytest>=8.0.0",
+    "ruff>=0.3.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

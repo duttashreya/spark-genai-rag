@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: spark-genai-rag
+Version: 0.1.0
+Summary: Scalable Document ETL and Hybrid RAG Engine using PySpark, pgvector, and FastAPI
+Requires-Python: <3.13,>=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pyspark>=3.5.0
+Requires-Dist: psycopg[binary]>=3.1.0
+Requires-Dist: pgvector>=0.2.5
+Requires-Dist: sentence-transformers>=2.7.0
+Requires-Dist: fastapi>=0.110.0
+Requires-Dist: uvicorn>=0.28.0
+Requires-Dist: pydantic>=2.6.0
+Requires-Dist: pydantic-settings>=2.2.0
+Requires-Dist: pytest>=8.0.0
+Requires-Dist: ruff>=0.3.0
+
+# Enterprise Hybrid RAG Ingestion Engine
+
+Scalable document ETL, semantic chunking, and hybrid search using PySpark, pgvector, and FastAPI.
