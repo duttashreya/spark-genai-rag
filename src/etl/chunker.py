@@ -51,5 +51,7 @@ chunk_schema = ArrayType(
 
 
 @udf(returnType=chunk_schema)
-def chunk_text_udf(text: str):
+def chunk_text_udf(text):
+    if text is None:
+        return []
     return chunk_text(text, chunk_size=100, chunk_overlap=20)
